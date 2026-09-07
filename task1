@@ -1,0 +1,66 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main() {
+  int N = 0;
+  std::cin >> N;
+  std::vector<std::vector<int>> mountain(N);
+  for (int i = 0; i < N; i++) {
+    mountain[i].resize(i + 1);
+    for (int j = 0; j <= i; j++) {
+      std::cin >> mountain[i][j];
+    }
+  }
+  //  dp[i][j] - минимальная сумма от вершины до клетки (i,j)
+  std::vector<std::vector<int>> dp(N);
+  for (int i = 0; i < N; i++) {
+    dp[i].resize(i + 1, 1000000000);
+  }
+  //  Создаём массив, чтобы запоминать, откуда пришли
+  //  parent[i][j] - номер столбца, из которого пришли
+  std::vector<std::vector<int>> parent(N);
+  for (int i = 0; i < N; i++) {
+    parent[i].resize(i + 1, -1);
+  }
+  dp[0][0] = mountain[0][0];
+  parent[0][0] = -1;
+  for (int i = 0; i < N - 1; i++) {
+    for (int j = 0; j <= i; j++) {
+      //  Спускаемся вниз-влево (в клетку (i+1, j))
+      int summa = dp[i][j] + mountain[i + 1][j];
+      if (summa < dp[i + 1][j]) {
+        dp[i + 1][j] = summa;
+        parent[i + 1][j] = j; //  запоминаем, что пришли из столбца j
+      }
+      //  Спускаемся вниз-вправо (в клетку (i+1, j+1))
+      summa = dp[i][j] + mountain[i + 1][j + 1];
+      if (summa < dp[i + 1][j + 1]) {
+        dp[i + 1][j + 1] = summa;
+        parent[i + 1][j + 1] = j; //  запоминаем, что пришли из столбца j
+      }
+    }
+  }
+  int min_sum = dp[N - 1][0];
+  int min_column = 0;
+  for (int j = 1; j < N; j++) {
+    if (dp[N - 1][j] < min_sum) {
+      min_sum = dp[N - 1][j];
+      min_column = j;
+    }
+  }
+  std::vector<int> path;
+  int line = N - 1;
+  int column = min_column;
+  while (line != -1) {
+    path.push_back(mountain[line][column]);
+    column = parent[line][column];
+    line--;
+  }  
+  reverse(path.begin(), path.end()); 
+  std::cout << min_sum << std::endl;
+  for (int i = 0; i < path.size(); i++) {
+    std::cout << path[i] << ' ';
+  }
+  return 0;
+}
