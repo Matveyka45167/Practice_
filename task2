@@ -23,3 +23,18 @@ int main() {
     graph[from].push_back(to);
     graph[to].push_back(from);
   }
+
+ std::vector<bool> visited(N + 1);
+  for (int i = 1; i <= N; ++i) {
+    visited[i] = false;
+  }
+  int count_components = 0;
+  for (int i = 1; i <= N; ++i) {
+    if (visited[i] == false) {
+      count_components++;
+      Dfs(graph, i, visited);
+    }
+  }
+  std::cout << count_components - 1 << std::endl;
+  return 0;
+}
