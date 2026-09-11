@@ -4,3 +4,20 @@ matrix = []
 for i in range(w):
     row = list(map(int, input().split()))
     matrix.append(row)
+
+min_line = w
+min_column = h
+max_line = -1
+max_column = -1
+
+for i in range(w):
+    for j in range(h):
+        if matrix[i][j] == 1:
+            if i < min_line:
+                min_line = i
+            if j < min_column:
+                min_column = j
+            if i > max_line:
+                max_line = i
+            if j > max_column:
+                max_column = j
