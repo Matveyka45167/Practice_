@@ -1,0 +1,6 @@
+h, w = map(int, input().split())
+
+matrix = []
+for i in range(w):
+    row = list(map(int, input().split()))
+    matrix.append(row)
