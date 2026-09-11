@@ -21,3 +21,10 @@ for i in range(w):
                 max_line = i
             if j > max_column:
                 max_column = j
+
+left_line = min_line - 1
+left_column = min_column - 1
+right_line = max_line + 1
+right_column = max_column + 1
+
+print(left_line, left_column, right_line, right_column)
