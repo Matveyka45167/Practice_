@@ -4,3 +4,21 @@ results = []
 for i in range(n):
     a, b, x, y = map(int, input().split())
     count = 0
+
+    b1 = min(b, x)
+    x -= b1
+    count += b1
+
+    a2 = min(a, y)
+    a -= a2
+    y -= a2
+    count += a2
+
+    a1 = min(a, x)
+    a -= a1
+    x -= a1
+    count += a1
+
+    results.append(str(count))
+
+print(' '.join(results))
