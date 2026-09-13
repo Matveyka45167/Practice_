@@ -1,0 +1,6 @@
+n = int(input())
+results = []
+
+for i in range(n):
+    a, b, x, y = map(int, input().split())
+    count = 0
