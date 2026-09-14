@@ -9,3 +9,8 @@ is_valid = (
 )
 
 number = input()
+
+if is_valid:
+    print("YES")
+else:
+    print("NO")
