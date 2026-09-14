@@ -1,0 +1,9 @@
+is_valid = (
+    len(number) == 6
+    and number[0].isupper()
+    and number[1].isdigit()
+    and number[2].isdigit()
+    and number[3].isdigit()
+    and number[4].isupper()
+    and number[5].isupper()
+)
