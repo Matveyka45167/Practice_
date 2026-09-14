@@ -7,3 +7,5 @@ is_valid = (
     and number[4].isupper()
     and number[5].isupper()
 )
+
+number = input()
