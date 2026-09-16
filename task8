@@ -63,3 +63,32 @@ void RainbowEffect(int wait) {
     delay(wait);
   }
 }
+
+// Зелёный ромб
+void ShowGreenDiamond(unsigned long duration) {
+  uint8_t diamond[8][8] = {
+    {0,0,0,1,1,0,0,0},
+    {0,0,1,1,1,1,0,0},
+    {0,1,1,1,1,1,1,0},
+    {1,1,1,1,1,1,1,1},
+    {1,1,1,1,1,1,1,1},
+    {0,1,1,1,1,1,1,0},
+    {0,0,1,1,1,1,0,0},
+    {0,0,0,1,1,0,0,0}
+  };
+
+  unsigned long start = millis();
+  while (millis() - start < duration * 1000) {
+    for (int y = 0; y < 8; y++) {
+      for (int x = 0; x < 8; x++) {
+        if (diamond[y][x] == 1) {
+          setPixelXY(x, y, strip.Color(0, 255, 0));  // Зелёный
+        } else {
+          setPixelXY(x, y, strip.Color(0, 0, 0));
+        }
+      }
+    }
+    strip.show();
+    delay(50);
+  }
+}
