@@ -10,3 +10,10 @@ blurred = cv2.GaussianBlur(image, (11, 11), 0)
 
 # Перевод в HSV 
 hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
+
+# Диапазон зелёного цвета в HSV
+green_min = np.array((40, 80, 80), np.uint8)   # Нижняя граница зелёного
+green_max = np.array((80, 255, 255), np.uint8) # Верхняя граница зелёного
+
+# Создание маски для зелёного цвета
+green_mask = cv2.inRange(hsv, green_min, green_max)
