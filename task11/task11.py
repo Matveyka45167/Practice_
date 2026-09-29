@@ -20,3 +20,13 @@ green_mask = cv2.inRange(hsv, green_min, green_max)
 
 # Нахождение контуров
 contours, hierarchy = cv2.findContours(green_mask.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+# Обрабатываем только внешние контуры
+for i, contour in enumerate(contours):
+    # Проверяем иерархию
+    if hierarchy[0][i][3] == -1:  # Parent == -1 значит внешний контур
+        area = cv2.contourArea(contour)
+        if area > 500:  # отсекаем маленькие шумовые контуры (артефакты сглаживания)
+            x, y, w, h = cv2.boundingRect(contour)
+            center = (int(x + w / 2), int(y + h / 2))
+            cv2.circle(image, center, 7, (0, 0, 255), 2)
