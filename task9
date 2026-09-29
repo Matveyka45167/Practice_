@@ -6,3 +6,12 @@
 
 unsigned long openStartTime = 0;  // Время открытия
 bool isOpen = false;               // Статус дверей
+
+void setup() {
+  pinMode(RED_LED, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT);
+  Serial.begin(9600);
+  digitalWrite(RED_LED, HIGH);
+  digitalWrite(GREEN_LED, LOW);
+  Serial.println("Двери закрыты");
+}
