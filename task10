@@ -25,3 +25,21 @@ bool isNumber(String str) {
   }
   return true;
 }
+
+void loop() {
+  if (Serial.available() > 0) {
+    String input = Serial.readStringUntil('\n');
+    input.trim();
+
+    if (input.length() > 0 and isNumber(input)) {
+      int newAngle = input.toInt();
+
+      if (newAngle >= 0 and newAngle <= 180) {void loop() {
+  if (Serial.available() > 0) {
+    String input = Serial.readStringUntil('\n');
+    input.trim();
+
+    if (input.length() > 0 and isNumber(input)) {
+      int newAngle = input.toInt();
+
+      if (newAngle >= 0 and newAngle <= 180) {
