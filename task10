@@ -43,3 +43,24 @@ void loop() {
       int newAngle = input.toInt();
 
       if (newAngle >= 0 and newAngle <= 180) {
+                if (newAngle != currentAngle) {
+          Serial.print("Поворачиваем на угол: ");
+          Serial.println(newAngle);
+
+          for (int angle = currentAngle; angle != newAngle; ) {
+            if (angle < newAngle) {
+              angle++;
+            } else {
+              angle--;
+            }
+            myServo.write(angle);
+            delay(15);
+          }
+
+          myServo.write(newAngle);
+          currentAngle = newAngle;
+          Serial.print("Текущий угол: ");
+          Serial.println(currentAngle);
+        } else {
+          Serial.println("Сервопривод уже в этом положении");
+        }
