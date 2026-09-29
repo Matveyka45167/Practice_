@@ -17,3 +17,6 @@ green_max = np.array((80, 255, 255), np.uint8) # Верхняя граница �
 
 # Создание маски для зелёного цвета
 green_mask = cv2.inRange(hsv, green_min, green_max)
+
+# Нахождение контуров
+contours, hierarchy = cv2.findContours(green_mask.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
