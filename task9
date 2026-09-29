@@ -15,3 +15,17 @@ void setup() {
   digitalWrite(GREEN_LED, LOW);
   Serial.println("Двери закрыты");
 }
+
+void OpenDoors() {
+  isOpen = true;
+  digitalWrite(RED_LED, LOW);
+  digitalWrite(GREEN_LED, HIGH);
+  Serial.println("Двери открыты");
+}
+
+void CloseDoors() {
+  isOpen = false;
+  digitalWrite(RED_LED, HIGH);
+  digitalWrite(GREEN_LED, LOW);
+  Serial.println("Двери закрыты");
+}
