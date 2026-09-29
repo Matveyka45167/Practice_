@@ -29,3 +29,16 @@ void CloseDoors() {
   digitalWrite(GREEN_LED, LOW);
   Serial.println("Двери закрыты");
 }
+
+void loop() {
+  int sensorValue = analogRead(LDR_PIN);
+  Serial.print("Значение фоторезистора: ");
+  Serial.println(sensorValue);
+
+  // Если человек приблизился (значение > 512)
+  if (sensorValue > THRESHOLD) {
+    if (!isOpen) {
+      OpenDoors();
+    }
+    openStartTime = millis();  // Обновляем время
+  }
